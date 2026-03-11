@@ -1,6 +1,15 @@
-import { ShoppingBag, Home, Search, Heart, User, MapPin, Clock, Star, ArrowRight, Phone, Zap, ChevronRight, Facebook, Instagram, Twitter, Mail, MessageCircle, Sparkles } from "lucide-react";
+"use client";
 
-export default function BonomayaOfficialFinalApp() {
+import { useState } from "react";
+import { 
+  ShoppingBag, Home, Search, Heart, User, MapPin, Clock, 
+  Star, ArrowRight, Phone, Zap, ChevronRight, Facebook, 
+  Instagram, Twitter, Mail, MessageCircle, Sparkles, X 
+} from "lucide-react";
+
+export default function BonomayaOfficialFullApp() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   const categories = [
     { name: "লাইভ বেকারি", icon: "🥐", count: "১৫+ আইটেম", color: "bg-[#DFC8A8]/30" },
     { name: "সিগনেচার বিরিয়ানি", icon: "🍛", count: "১০+ আইটেম", color: "bg-[#FFB237]/10" },
@@ -29,11 +38,54 @@ export default function BonomayaOfficialFinalApp() {
             </div>
           </div>
         </div>
-        <button className="relative p-3 bg-[#FFB237]/10 rounded-2xl active:scale-90 transition-all border border-[#FFB237]/30 text-[#854442]">
-          <ShoppingBag size={22} />
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#854442] text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white">৩</span>
-        </button>
+        <div className="flex gap-2">
+            <button onClick={() => setIsLoginOpen(true)} className="p-2.5 bg-[#854442]/5 rounded-2xl text-[#854442] border border-[#DFC8A8] active:scale-90 transition-all">
+                <User size={20} />
+            </button>
+            <button className="relative p-2.5 bg-[#FFB237]/10 rounded-2xl border border-[#FFB237]/30 text-[#854442] active:scale-90 transition-all">
+                <ShoppingBag size={20} />
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#854442] text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white">৩</span>
+            </button>
+        </div>
       </header>
+
+      {/* --- লগইন পপ-আপ --- */}
+      {isLoginOpen && (
+        <div className="fixed inset-0 z-[200] flex items-end md:items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all">
+          <div className="bg-white w-full max-w-md rounded-t-[40px] md:rounded-[40px] p-8 relative shadow-2xl animate-in slide-in-from-bottom duration-300">
+            <button onClick={() => setIsLoginOpen(false)} className="absolute right-6 top-6 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+              <X size={20} />
+            </button>
+            
+            <h3 className="text-3xl font-black italic text-[#854442] mb-2 tracking-tighter">স্বাগতম!</h3>
+            <p className="text-gray-500 text-sm font-bold mb-8 uppercase tracking-widest">আপনার অ্যাকাউন্ট খুলুন বা লগইন করুন</p>
+            
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div>
+                <label className="text-[10px] font-black uppercase text-gray-400 ml-2 mb-1 block tracking-widest">ফোন নম্বর</label>
+                <input type="tel" placeholder="017XXXXXXXX" className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-6 font-bold outline-none focus:border-[#FFB237] transition-all placeholder:text-gray-300" />
+              </div>
+              <div>
+                <label className="text-[10px] font-black uppercase text-gray-400 ml-2 mb-1 block tracking-widest">পাসওয়ার্ড</label>
+                <input type="password" placeholder="••••••••" className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-6 font-bold outline-none focus:border-[#FFB237] transition-all placeholder:text-gray-300" />
+              </div>
+              <button className="w-full bg-[#854442] text-white py-5 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl shadow-[#854442]/20 active:scale-95 transition-all">লগইন করুন</button>
+            </form>
+            
+            <div className="mt-8 text-center">
+              <p className="text-xs font-bold text-gray-400 uppercase mb-4">অথবা সোশ্যাল মিডিয়া দিয়ে</p>
+              <div className="flex gap-4">
+                <button className="flex-1 py-3 bg-white border-2 border-gray-100 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 hover:border-[#FFB237] transition-colors">
+                  <Facebook size={16} className="text-blue-600" /> Facebook
+                </button>
+                <button className="flex-1 py-3 bg-white border-2 border-gray-100 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 hover:border-[#FFB237] transition-colors">
+                  <span className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">G</span> Google
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* --- সার্চ বার --- */}
       <section className="px-5 pt-6">
@@ -49,7 +101,7 @@ export default function BonomayaOfficialFinalApp() {
         </div>
       </section>
 
-      {/* --- প্রোমো হিরো ব্যানার --- */}
+      {/* --- হিরো ব্যানার --- */}
       <section className="px-5 py-6">
         <div className="relative overflow-hidden bg-[#FFB237] rounded-[45px] p-10 text-[#854442] min-h-[250px] flex flex-col justify-center shadow-2xl border-b-8 border-[#854442]">
             <div className="relative z-10">
@@ -65,7 +117,7 @@ export default function BonomayaOfficialFinalApp() {
         </div>
       </section>
 
-      {/* --- ক্যাটাগরি সেকশন --- */}
+      {/* --- ক্যাটাগরি --- */}
       <section className="px-5 mt-4">
         <h3 className="text-2xl font-black tracking-tighter italic text-[#854442] mb-6 px-2">মেনু ক্যাটাগরি</h3>
         <div className="grid grid-cols-2 gap-4">
@@ -81,7 +133,7 @@ export default function BonomayaOfficialFinalApp() {
         </div>
       </section>
 
-      {/* --- আমাদের সম্পর্কে সেকশন --- */}
+      {/* --- আমাদের সম্পর্কে --- */}
       <section className="px-5 py-10">
         <div className="bg-white rounded-[40px] p-8 border-2 border-[#FFB237]/20 shadow-sm relative overflow-hidden text-center">
           <h3 className="text-2xl font-black italic text-[#854442] mb-4 tracking-tighter">আমাদের সম্পর্কে</h3>
@@ -101,7 +153,7 @@ export default function BonomayaOfficialFinalApp() {
         </div>
       </section>
 
-      {/* --- যোগাযোগ সেকশন --- */}
+      {/* --- যোগাযোগ --- */}
       <section className="px-5 pb-10">
         <h3 className="text-2xl font-black italic text-[#854442] mb-6 tracking-tighter px-2">যোগাযোগ করুন</h3>
         <div className="grid grid-cols-1 gap-4">
@@ -128,13 +180,13 @@ export default function BonomayaOfficialFinalApp() {
         </div>
       </section>
 
-      {/* --- ইয়েলো থিম ১০এমএস স্টাইল ফুটার --- */}
+      {/* --- ফুটার --- */}
       <footer className="bg-[#FFB237] text-[#854442] pt-16 pb-32 px-6 rounded-t-[55px] shadow-[0_-20px_50px_rgba(255,178,55,0.2)]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-10">
             <div className="col-span-1 md:col-span-2">
               <div className="text-4xl font-black mb-6 italic text-[#854442]">BONOMAYA<span className="text-white">.</span></div>
-              <p className="text-[#854442]/80 text-sm font-bold leading-relaxed max-w-xs mb-8">মিরপুর ২ এর প্রিমিয়াম লাইভ বেকারি। তাজা স্বাদ আর বিশুদ্ধতার অঙ্গীকার।</p>
+              <p className="text-[#854442]/80 text-sm font-bold leading-relaxed max-w-xs mb-8 italic">মিরপুর ২ এর প্রিমিয়াম লাইভ বেকারি। তাজা স্বাদ আর বিশুদ্ধতার অঙ্গীকার।</p>
               <div className="flex gap-4">
                  {[Facebook, Instagram, Twitter].map((Icon, i) => (
                   <button key={i} className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center border border-[#854442]/10 hover:bg-[#854442] hover:text-white transition-all">
@@ -162,13 +214,13 @@ export default function BonomayaOfficialFinalApp() {
       <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md bg-[#854442] border-2 border-[#FFB237] shadow-[0_25px_50px_rgba(0,0,0,0.3)] rounded-[35px] px-10 py-5 flex justify-between items-center z-[120]">
         <button className="flex flex-col items-center gap-1.5 text-[#FFB237]">
           <Home size={24} fill="currentColor" />
-          <span className="text-[9px] font-black uppercase tracking-widest text-[#FFB237]">Home</span>
+          <span className="text-[9px] font-black uppercase tracking-widest">Home</span>
         </button>
         <button className="flex flex-col items-center gap-1.5 text-white/50 hover:text-[#FFB237] transition-colors">
-          <MessageCircle size={24} />
-          <span className="text-[9px] font-black uppercase tracking-widest">Chat</span>
+          <Zap size={24} />
+          <span className="text-[9px] font-black uppercase tracking-widest">Offers</span>
         </button>
-        <button className="flex flex-col items-center gap-1.5 text-white/50 hover:text-[#FFB237] transition-colors">
+        <button onClick={() => setIsLoginOpen(true)} className="flex flex-col items-center gap-1.5 text-white/50 hover:text-[#FFB237] transition-colors">
           <User size={24} />
           <span className="text-[9px] font-black uppercase tracking-widest">Account</span>
         </button>
